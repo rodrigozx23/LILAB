@@ -19,10 +19,10 @@ Ubicacion : /DEV.
 
 Abrir la solucion, ir al archivo "appsettings.json" este se encuentra en la raiz de APP y darle editar para cambiar la cadena de conexion.
   
-                                                  "ConnectionStrings": {
-                                                        "Default": "server=?;user=?;database=?]"
-                                                  }    
-                                                                      * Dejar el key con la descripcion "Default" *
+                                 "ConnectionStrings": {
+                                       "Default": "server=?;user=?;database=?]"
+                                 }    
+                                                     * Dejar el key con la descripcion "Default" *
   
 c) Arquitectura-
  
