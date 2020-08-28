@@ -27,12 +27,7 @@ c) Arquitectura-
  
  test    
       .Controller      
-        -CreditoController 
-            Ruta, Typo, Param
-                - /Credito/ActualizarEstadoCredito , "POST" , { creditoID INT, accion string}
-                - /Credito/ListarCreditos , "GET", {}
-                - /Credito/ObtenerIndicadorSBS , "GET", { creditoID INT }
-                - /Credito/ObtenerIndicadorIA , "GET", { creditoID INT }
+          - CreditoController 
       .Da(DataAccess)
           - CreditoDAO
           - HistorialsbsDAO     
