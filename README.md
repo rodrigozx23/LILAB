@@ -1,6 +1,6 @@
-LILAB Saludos Cordiales.
+Lima Innovation Lab Saludos Cordiales.
 
-Este proyecto se desarrollo con las tecnologias Asp.Core, Mysql.
+Este proyecto se ha desarrollo con las tecnologias Asp.Core, Mysql.
 
 A) Backup-
 Ubicacion : /BD. 
