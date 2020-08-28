@@ -3,15 +3,18 @@ LILAB Saludos Cordiales.
 Este proyecto se desarrollo con las tecnologias Asp.Core, Mysql.
 
 A) Backup-
-Ubicacion :Raiz/carpetaBD. 
+Ubicacion : /BD. 
  
-Debemos ejecutar los scripts en el siguiente orden. 
-  1.- Primero ejecutar el script BDTEST.sql.
-  2.- luego ejecutar el script Data.sql.
-  3.- Y para finalizar los stores procedures SP_ACTUALIZAR_CREDITO.sql, SP_LISTADO_SBS.sql y SP_LISTAR_CREDITOS.sql
+Debemos ejecutar los scripts en el siguiente orden:
+  1)Primero ejecutar el script BDTEST.sql.
+  2)luego ejecutar el script Data.sql.
+  3)para finalizar con los stores procedures 
+      SP_ACTUALIZAR_CREDITO.sql.
+      SP_LISTADO_SBS.sql. 
+      SP_LISTAR_CREDITOS.sql.
   
 B) App-
-Ubicacion :Raiz/carpetaDEV. 
+Ubicacion : /DEV. 
 
 Abrir la solucion, ir al archivo "appsettings.json" este se encuentra en la raiz de APP y darle editar para cambiar la cadena de conexion.
   
