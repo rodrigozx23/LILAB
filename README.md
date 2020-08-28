@@ -28,22 +28,22 @@ c) Arquitectura-
  test    
  
       .Controller      
-          - CreditoController 
+          - CreditoController.cs
           
       .Da(DataAccess)
-          - CreditoDAO
-          - HistorialsbsDAO     
+          - CreditoDAO.cs
+          - HistorialsbsDAO.cs     
           
       .Entidades 
-          - Credito
-          - HistorialSBS
-          - Sentinel
+          - Credito.cs
+          - HistorialSBS.cs
+          - Sentinel.bs
           
       .Service
-          - CreditoService
+          - CreditoService.bs
           
-D)ENDPOINT
-      - Ruta,                              Typo,     Param
+D)EndPoint.
+  Ruta,                              Typo,     Param
       - /Credito/ActualizarEstadoCredito , "POST" , { creditoID INT, accion string}
       - /Credito/ListarCreditos          , "GET"  , {}
       - /Credito/ObtenerIndicadorSBS     , "GET"  , { creditoID INT }
