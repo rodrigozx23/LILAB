@@ -9,12 +9,13 @@ namespace test.DA
 {
     public class HistorialsbsDAO
     {
-        public async Task<List<HistorialSBS>> ObtenerHistorialSBS(int idcliente)
+
+        public async Task<List<HistorialSBS>> ObtenerHistorialSBS(int idcliente, string cnn)
         {
             List<HistorialSBS> rpta = new List<HistorialSBS>();
             try
             {
-                MySqlConnection conn = new MySqlConnection("server=localhost;user=root;password=root;database=bdtest");
+                MySqlConnection conn = new MySqlConnection(cnn);
                 await conn.OpenAsync();
                 using (var cmd = new MySqlCommand("CALL SP_LISTADO_SBS (@PEI_ID_CLIENTE);", conn))
                 {
