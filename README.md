@@ -44,12 +44,11 @@ c) Arquitectura-
           
 D)EndPoint.
 
-  Ruta                                Typo       Param
-  
-  (/Credito/ActualizarEstadoCredito)  "POST"    { creditoID INT, accion string}<br>
-  (/Credito/ListarCreditos )          "GET"     {}<br>
-  (/Credito/ObtenerIndicadorSBS)      "GET"      { creditoID INT }<br>
-  (/Credito/ObtenerIndicadorIA )      "GET"     { creditoID INT }<br>
+   Ruta                                Typo       Param
+   (/Credito/ActualizarEstadoCredito)  "POST"    { creditoID INT, accion string}<br>
+   (/Credito/ListarCreditos )          "GET"     {}<br>
+   (/Credito/ObtenerIndicadorSBS)      "GET"      { creditoID INT }<br>
+   (/Credito/ObtenerIndicadorIA )      "GET"     { creditoID INT }<br>
           
 E) Doc.
   Ubicacion :Raiz/carpetaDoc
