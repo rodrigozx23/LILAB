@@ -29,10 +29,10 @@ c) Arquitectura-
       .Controller      
         -CreditoController 
             Ruta, Typo, Param
-                -> /Credito/ActualizarEstadoCredito , "POST" , { creditoID INT, accion string}
-                -> /Credito/ListarCreditos , "GET", {}
-                -> /Credito/ObtenerIndicadorSBS , "GET", { creditoID INT }
-                -> /Credito/ObtenerIndicadorIA , "GET", { creditoID INT }
+                - /Credito/ActualizarEstadoCredito , "POST" , { creditoID INT, accion string}
+                - /Credito/ListarCreditos , "GET", {}
+                - /Credito/ObtenerIndicadorSBS , "GET", { creditoID INT }
+                - /Credito/ObtenerIndicadorIA , "GET", { creditoID INT }
       .Da(DataAccess)
           - CreditoDAO
           - HistorialsbsDAO     
