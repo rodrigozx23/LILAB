@@ -43,7 +43,7 @@ c) Arquitectura-
       .Service
           - CreditoService.bs
           
-D)EndPoint.
+D) EndPoint.
 
    Ruta                                Typo       Param<br>
    (/Credito/ActualizarEstadoCredito)  "POST"    { creditoID INT, accion string}<br>
