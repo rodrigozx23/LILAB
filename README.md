@@ -26,8 +26,10 @@ Abrir la solucion, ir al archivo "appsettings.json" este se encuentra en la raiz
 c) Arquitectura-
  
  test    
+ 
       .Controller      
           - CreditoController 
+          
       .Da(DataAccess)
           - CreditoDAO
           - HistorialsbsDAO     
@@ -40,7 +42,14 @@ c) Arquitectura-
       .Service
           - CreditoService
           
-D) Doc.
+D)ENDPOINT
+      - Ruta,                              Typo,     Param
+      - /Credito/ActualizarEstadoCredito , "POST" , { creditoID INT, accion string}
+      - /Credito/ListarCreditos          , "GET"  , {}
+      - /Credito/ObtenerIndicadorSBS     , "GET"  , { creditoID INT }
+      - /Credito/ObtenerIndicadorIA      , "GET"  , { creditoID INT }
+          
+E) Doc.
   Ubicacion :Raiz/carpetaDoc
     - Aprobar Creditos.png
     - bdtest_modelacion.png    
