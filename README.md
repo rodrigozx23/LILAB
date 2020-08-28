@@ -44,7 +44,7 @@ c) Arquitectura-
           
 D)EndPoint.
 
-   Ruta                                Typo       Param
+   Ruta                                Typo       Param<br>
    (/Credito/ActualizarEstadoCredito)  "POST"    { creditoID INT, accion string}<br>
    (/Credito/ListarCreditos )          "GET"     {}<br>
    (/Credito/ObtenerIndicadorSBS)      "GET"      { creditoID INT }<br>
