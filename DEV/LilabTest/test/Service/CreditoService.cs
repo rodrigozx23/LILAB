@@ -17,25 +17,22 @@ namespace test.Service
             creditoDAO = new CreditoDAO();
             historialsbsDAO = new HistorialsbsDAO();
         }
-        public async Task<List<Credito>> ListarCreditos()
+        public async Task<List<Credito>> ListarCreditos(string cnn)
         {
-            var rpta = creditoDAO.ListarCreditos();
+            var rpta = creditoDAO.ListarCreditos(cnn);
             return await rpta;
         }
 
-        public async Task<Credito> ActualizarEstadoCredito(Credito entidad)
+        public async Task<Credito> ActualizarEstadoCredito(Credito entidad, string cnn)
         {
-            var rpta = creditoDAO.ActualizarEstadoCredito(entidad);
+            var rpta = creditoDAO.ActualizarEstadoCredito(entidad, cnn);
             return await rpta;
         }
 
-        public async Task<IEnumerable<HistorialSBS>> ObtenerHistorialSBS(int clienteId)
+        public async Task<IEnumerable<HistorialSBS>> ObtenerHistorialSBS(int clienteId, string cnn)
         {           
-            var List = historialsbsDAO.ObtenerHistorialSBS(clienteId);
+            var List = historialsbsDAO.ObtenerHistorialSBS(clienteId, cnn);
             return await List;
         }
-
-
-
     }
 }

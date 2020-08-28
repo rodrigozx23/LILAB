@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using test.Entidades;
 using test.Service;
 
@@ -12,30 +13,14 @@ namespace test.Controllers
     [ApiController]
     public class CreditoController : ControllerBase
     {
+        private readonly string connString;
+
         private CreditoService creditoService;
 
-        public CreditoController() 
+        public CreditoController(IConfiguration _config) 
         {     
             creditoService = new CreditoService();
-        }
-
-        [HttpGet]
-        [ActionName("ListarCredito")]
-        [Route("Credito/ListarCredito")]
-        public async Task<List<Credito>> GetListaSolicitudeCredito()
-        {
-            List<Credito> ent = new List<Credito>();
-            try
-            {
-                var lista = creditoService.ListarCreditos();
-                return await lista;
-            }
-            catch (Exception e)
-            {
-                ent = null;
-                Console.Write("Error" + e.ToString());
-            }
-            return ent;
+            connString = _config.GetConnectionString("Default");
         }
 
         [HttpPost]
@@ -57,7 +42,7 @@ namespace test.Controllers
                     ent.Estado = "RECHAZAR";
                 }
                
-                var lista = creditoService.ActualizarEstadoCredito(ent);
+                var lista = creditoService.ActualizarEstadoCredito(ent, connString);
                 return await lista;
             }
             catch (Exception e)
@@ -68,6 +53,26 @@ namespace test.Controllers
             return ent;
         }
 
+
+        [HttpGet]
+        [ActionName("ListarCreditos")]
+        [Route("Credito/ListarCreditos")]
+        public async Task<List<Credito>> GetListaSolicitudeCredito()
+        {
+            List<Credito> ent = new List<Credito>();
+            try
+            {
+                var lista = creditoService.ListarCreditos(connString);
+                return await lista;
+            }
+            catch (Exception e)
+            {
+                ent = null;
+                Console.Write("Error" + e.ToString());
+            }
+            return ent;
+        }
+        
         [HttpGet]
         [ActionName("Sentinel")]
         [Route("Credito/ObtenerIndicadorSBS")]
@@ -77,36 +82,42 @@ namespace test.Controllers
 
             try
             {          
-                var lista = creditoService.ObtenerHistorialSBS(clienteID);
+                var lista = creditoService.ObtenerHistorialSBS(clienteID, connString);
 
-                var totalCreditosPositivos = from file in lista.Result
-                           where file.fecha_pago != null
-                           select new { total = file.Total};
-
-                var totalCreditosNegativo = from file in lista.Result
-                           where file.fecha_pago == null
-                           select new { total = file.Total };
-
-                var total = from file in lista.Result
-                                            select new { total = file.Total };
-
-                sentinel.ClienteID = clienteID;
-                sentinel.CantidadCreditos = total.Count();
-                sentinel.CantidadCreditosNegativos = totalCreditosNegativo.Count();
-                sentinel.CantidadCreditosPositivos = totalCreditosPositivos.Count();
-                sentinel.Total = total.Sum(f => f.total);
-                sentinel.TotalCreditosNegativo = totalCreditosNegativo.Sum(f => f.total);
-                sentinel.TotalCreditosPositivos = totalCreditosPositivos.Sum(f => f.total);
-                if (sentinel.CantidadCreditosNegativos == 0) {
-                    sentinel.Indicador = "BUENO";
-                }
-                else if (sentinel.CantidadCreditosPositivos > sentinel.CantidadCreditosNegativos)
+                if (lista.Result != null)
                 {
-                    sentinel.Indicador = "REGULAR";
-                } else{
-                    sentinel.Indicador = "MALO";
+                    var totalCreditosPositivos = from file in lista.Result
+                                                 where file.fecha_pago != null
+                                                 select new { total = file.Total };
+
+                    var totalCreditosNegativo = from file in lista.Result
+                                                where file.fecha_pago == null
+                                                select new { total = file.Total };
+
+                    var total = from file in lista.Result
+                                select new { total = file.Total };
+
+                    sentinel.ClienteID = clienteID;
+                    sentinel.CantidadCreditos = total.Count();
+                    sentinel.CantidadCreditosNegativos = totalCreditosNegativo.Count();
+                    sentinel.CantidadCreditosPositivos = totalCreditosPositivos.Count();
+                    sentinel.Total = total.Sum(f => f.total);
+                    sentinel.TotalCreditosNegativo = totalCreditosNegativo.Sum(f => f.total);
+                    sentinel.TotalCreditosPositivos = totalCreditosPositivos.Sum(f => f.total);
+                    if (sentinel.CantidadCreditosNegativos == 0)
+                    {
+                        sentinel.Indicador = "BUENO";
+                    }
+                    else if (sentinel.CantidadCreditosPositivos > sentinel.CantidadCreditosNegativos)
+                    {
+                        sentinel.Indicador = "REGULAR";
+                    }
+                    else
+                    {
+                        sentinel.Indicador = "MALO";
+                    }
+                    return await Task.FromResult(sentinel);
                 }
-                return await Task.FromResult(sentinel);              
             }
             catch (Exception e)
             {
@@ -114,8 +125,9 @@ namespace test.Controllers
                 Console.Write("Error" + e.ToString());
             }
             return sentinel;
-        }
-
+        }       
+        
+        
         [HttpGet]
         [ActionName("IA")]
         [Route("Credito/ObtenerIndicadorIA")]
@@ -126,7 +138,7 @@ namespace test.Controllers
             try
             {
 
-                var lista = creditoService.ObtenerHistorialSBS(clienteID);
+                var lista = creditoService.ObtenerHistorialSBS(clienteID, connString);
 
                 var totalCreditosPositivos = from file in lista.Result
                                              where file.fecha_pago != null

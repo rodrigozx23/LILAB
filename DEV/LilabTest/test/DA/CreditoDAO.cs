@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using Microsoft.Extensions.Configuration;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace test.DA
 {
     public class CreditoDAO
     {
-        public async Task<List<Credito>> ListarCreditos()
+        public async Task<List<Credito>> ListarCreditos(string cnn)
         {
             List<Credito> rpta = new List<Credito>();
         
-                MySqlConnection conn = new MySqlConnection("server=localhost;user=root;password=root;database=bdtest");
+                MySqlConnection conn = new MySqlConnection(cnn);
                 await conn.OpenAsync();
                 using (var cmd = new MySqlCommand("CALL SP_LISTAR_CREDITOS();", conn))
                 {
@@ -26,6 +27,7 @@ namespace test.DA
                             cre.ClienteID = (int)reader["IdCliente"];
                             cre.NombreCliente = reader["nombre"].ToString();
                             cre.Monto = (Double)reader["Total"];
+                            cre.EsSolicitado = true;
                             cre.Estado = reader["Estado"].ToString();
                             rpta.Add(cre);
                         }
@@ -33,11 +35,11 @@ namespace test.DA
                 }                      
             return rpta; 
         }
-        public async Task<Credito> ActualizarEstadoCredito(Credito entidad)
+        public async Task<Credito> ActualizarEstadoCredito(Credito entidad, string cnn)
         {
             Credito rpta = new Credito();
             try { 
-            MySqlConnection conn = new MySqlConnection("server=localhost;user=root;password=root;database=bdtest");
+            MySqlConnection conn = new MySqlConnection(cnn);
             await conn.OpenAsync();
             using (var cmd = new MySqlCommand("CALL SP_ACTUALIZAR_ESTADO_CREDITO (@PEI_ID_CREDITO, @PEV_ESTADO);", conn))
             {
