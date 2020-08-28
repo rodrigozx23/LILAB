@@ -46,10 +46,10 @@ D)EndPoint.
 
   Ruta                                Typo       Param
   
-  (/Credito/ActualizarEstadoCredito)  "POST"    { creditoID INT, accion string}
-  (/Credito/ListarCreditos )          "GET"     {}
-  (/Credito/ObtenerIndicadorSBS)      "GET"      { creditoID INT }
-  (/Credito/ObtenerIndicadorIA )      "GET"     { creditoID INT }
+  (/Credito/ActualizarEstadoCredito)  "POST"    { creditoID INT, accion string}<br>
+  (/Credito/ListarCreditos )          "GET"     {}<br>
+  (/Credito/ObtenerIndicadorSBS)      "GET"      { creditoID INT }<br>
+  (/Credito/ObtenerIndicadorIA )      "GET"     { creditoID INT }<br>
           
 E) Doc.
   Ubicacion :Raiz/carpetaDoc
