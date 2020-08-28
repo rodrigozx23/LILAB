@@ -43,11 +43,11 @@ c) Arquitectura-
           - CreditoService.bs
           
 D)EndPoint.
-  Ruta,                              Typo,     Param
-      - /Credito/ActualizarEstadoCredito , "POST" , { creditoID INT, accion string}
-      - /Credito/ListarCreditos          , "GET"  , {}
-      - /Credito/ObtenerIndicadorSBS     , "GET"  , { creditoID INT }
-      - /Credito/ObtenerIndicadorIA      , "GET"  , { creditoID INT }
+  Ruta                                Typo       Param
+  (/Credito/ActualizarEstadoCredito)  "POST"    { creditoID INT, accion string}
+  (/Credito/ListarCreditos )          "GET"     {}
+  (/Credito/ObtenerIndicadorSBS)      "GET"      { creditoID INT }
+  (/Credito/ObtenerIndicadorIA )      "GET"     { creditoID INT }
           
 E) Doc.
   Ubicacion :Raiz/carpetaDoc
