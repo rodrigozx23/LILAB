@@ -5,13 +5,13 @@ Este proyecto se desarrollo con las tecnologias Asp.Core, Mysql.
 A) Backup-
 Ubicacion : /BD. 
  
-Debemos ejecutar los scripts en el siguiente orden:
-  1)Primero ejecutar el script BDTEST.sql.
-  2)luego ejecutar el script Data.sql.
-  3)para finalizar con los stores procedures 
-      SP_ACTUALIZAR_CREDITO.sql.
-      SP_LISTADO_SBS.sql. 
-      SP_LISTAR_CREDITOS.sql.
+Debemos ejecutar los scripts en el siguiente orden:<br>
+  1)Primero ejecutar el script BDTEST.sql.<br>
+  2)luego ejecutar el script Data.sql.<br>
+  3)para finalizar con los stores procedures <br>
+      SP_ACTUALIZAR_CREDITO.sql.<br>
+      SP_LISTADO_SBS.sql. <br>
+      SP_LISTAR_CREDITOS.sql.<br>
   
 B) App-
 Ubicacion : /DEV. 
